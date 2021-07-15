@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20210511191110_addFilePath.cs" />
+    <Compile Remove="Migrations\20210511191110_addFilePath.Designer.cs" />
+    <Compile Remove="Migrations\20210514181325_addCityIdforCounty.cs" />
+    <Compile Remove="Migrations\20210514181325_addCityIdforCounty.Designer.cs" />
+    <Compile Remove="Migrations\20210514181708_addCityIdforCounty.cs" />
+    <Compile Remove="Migrations\20210514181708_addCityIdforCounty.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RealEstateWebSiteProjects.Core\RealEstateWebSiteProjects.Core.csproj" />
+  </ItemGroup>
+
+</Project>

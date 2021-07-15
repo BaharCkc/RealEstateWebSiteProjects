@@ -1,0 +1,55 @@
+﻿@model RealEstateWebSiteProjects.Contract.CustomModels.Announcement.DocumentAnnouncementListModel
+
+<div class="row">
+    @if (Model.AnnouncementList != null && Model.AnnouncementList.Count > 0)
+    {
+        foreach (var item in Model.AnnouncementList)
+        {
+            <div id="announcementCard" style="text-align: -webkit-center" class="col-lg-4 col-sm-6">
+                <div class="product-item" style="width: 300px">
+                    <div class="pi-pic">
+                        @foreach (var file in Model.DocumentFileList)
+                        {
+                            if (item.Id == file.AnnouncementId)
+                            {
+                                <img src=@file.FilePath alt="">
+
+                            }
+                        }
+                        <div class="sale pp-sale">Sale</div>
+                        <div class="icon">
+                            <i class="icon_heart_alt"></i>
+                        </div>
+                        <ul>
+                            <li class="w-icon active"><a href="#" id="deleteAnnouncement" data-id="@item.Id"><i class="icon_bag_alt"></i>Sil</a></li>
+                            <li class="quick-view"><a href="/Announcement/UpdateAnnouncementById?Id=@item.Id">+ Güncelle</a></li>
+                            <li class="quick-view"><a href="/Announcement/DetailsAnnouncementById?Id=@item.Id">+ Detay</a></li>
+                        </ul>
+                    </div>
+                    <div class="pi-text">
+                        @foreach (var type in Model.AnnouncementTypeList)
+                        {
+                            if (item.AnnouncementTypeId == type.Id)
+                            {
+                                <div class="catagory-name">@item.Number - @type.Description</div>
+
+                            }
+                        }
+                        <a href="#">
+                            <h5>@item.Header</h5>
+                        </a>
+                        <div class="product-price">
+                            @item.Price
+                            @*<span>$35.00</span>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h5>İlanınız Bulunmamaktadır</h5>
+    }
+
+</div>

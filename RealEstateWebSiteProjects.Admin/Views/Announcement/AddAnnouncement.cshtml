@@ -1,0 +1,219 @@
+﻿@model RealEstateWebSiteProjects.Contract.CustomModels.Announcement.AddAnnouncementListModel
+@{
+    ViewData["Title"] = "AddAnnouncement";
+}
+<link href="~/Template/fashi/css/toastr.min.css" rel="stylesheet" />
+<br />
+<br />
+<div style="text-align:center">
+    <h2>İlan Ekle</h2>
+</div>
+<div class="register-form">
+    <form id="addAnnouncementForm" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <div class="register-login-section spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>
+                            <div class="group-input">
+                                <label for="username">İlan Adı *</label>
+                                <input name="Header" type="text" id="header">
+                                <span id="Header" class="text-danger" data-valmsg-for="Header" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="group-input">
+                                <label for="pass">Fiyat *</label>
+                                <input name="Price" class="real form-control" type="text" id="pass">
+                                <span id="Price" class="text-danger" data-valmsg-for="Price" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="con-pass">Brüt Metrekare *</label>
+                                        <input name="GrossSquareMeter" type="text" id="con-pass">
+                                        <span id="GrossSquareMeter" class="text-danger" data-valmsg-for="GrossSquareMeter" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="con-pass">Net Metrekare *</label>
+                                        <input name="NetSquareMeter" type="text" id="con-pass">
+                                        <span id="NetSquareMeter" class="text-danger" data-valmsg-for="NetSquareMeter" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="con-pass">Bulunduğu Kat *</label>
+                                        <input name="FloorLocation" type="text" id="con-pass">
+                                        <span id="FloorLocation" class="text-danger" data-valmsg-for="FloorLocation" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="con-pass">Konut Yaşı *</label>
+                                        <input name="HousingAge" type="number" id="con-pass">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="group-input">
+                                <label for="con-pass">Adres *</label>
+                                <textarea name="Address" class="form-control" rows="4"></textarea>
+                                <span id="Address" class="text-danger" data-valmsg-for="Address" data-valmsg-replace="true"></span>
+                                @*<input type="text" id="con-pass">*@
+                            </div>
+                            <div class="group-input">
+                                <label for="con-pass">İlan Resimleri *</label>
+                                <input name="UploadFile" multiple="multiple" class="form-control" type="file">
+                                <span id="UploadFile" class="text-danger" data-valmsg-for="UploadFile" data-valmsg-replace="true"></span>
+                                @*<input type="text" id="con-pass">*@
+                            </div>
+                            @*<button type="submit" class="site-btn register-btn">REGISTER</button>*@
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div>
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="con-pass">Oda Sayısı *</label>
+                                        <input name="NumberOfRooms" type="text" id="con-pass">
+                                        <span id="NumberOfRooms" class="text-danger" data-valmsg-for="NumberOfRooms" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="con-pass">Banyo Sayısı *</label>
+                                        <input name="NumberOfBathrooms" type="text" id="con-pass">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>* Eşyalı mı?  :</label>
+                                        <select class="form-control" name="IsArticle" id="IsArticle">
+                                            <option value=""></option>
+                                            <option value="true">Evet</option>
+                                            <option value="false">Hayır</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="group-input">
+                                <label>* Şehir  :</label>
+                                <select class="form-control" style="display:inline-block;" name="CityId" id="city">
+                                    <option value="">İl Seçiniz</option>
+                                    @if (Model.CityList != null)
+                                    {
+                                        @foreach (var item in Model.CityList)
+                                        {
+                                            <option value="@item.Id">@item.Description</option>
+                                        }
+                                    }
+                                </select>
+                                <span id="CityId" class="text-danger" data-valmsg-for="CityId" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="group-input">
+                                <label>* İlçe  :</label>
+                                <select class="form-control" style="display:inline-block;" name="CountyId" id="county">
+                                    <option value="">İlçe Seçiniz</option>
+                                    @*@if (Model.CountyList != null)
+            {
+                @foreach (var item in Model.CountyList)
+                {
+                    <option value="@item.Id">@item.Description</option>
+                }
+            }*@
+                                </select>
+                                <span id="CountyId" class="text-danger" data-valmsg-for="CountyId" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="group-input">
+                                <label>* İlan Kategori  :</label>
+                                <select class="form-control" name="AnnouncementCategoryId" id="catId">
+                                    <option value=""></option>
+                                    @if (Model.AnnouncementCategoryList != null)
+                                    {
+                                        @foreach (var item in Model.AnnouncementCategoryList)
+                                        {
+                                            <option value="@item.Id">@item.Description</option>
+                                        }
+                                    }
+                                </select>
+                                <span id="AnnouncementCategoryId" class="text-danger" data-valmsg-for="AnnouncementCategoryId" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="group-input">
+                                <label>* İlan Tipi  :</label>
+                                <select class="form-control" name="AnnouncementTypeId" id="typeId">
+                                    <option value=""></option>
+                                    @if (Model.AnnouncementTypeList != null)
+                                    {
+                                        @foreach (var item in Model.AnnouncementTypeList)
+                                        {
+                                            <option value="@item.Id">@item.Description</option>
+                                        }
+                                    }
+                                </select>
+                                <span id="AnnouncementTypeId" class="text-danger" data-valmsg-for="AnnouncementTypeId" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="group-input">
+                                <label for="con-pass">Açıklama *</label>
+                                <textarea name="Description" class="form-control" rows="6"></textarea>
+                                @*<input type="text" id="con-pass">*@
+                            </div>
+
+                        </div>
+                        <button type="submit" style="float:right" class="site-btn register-btn">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+@section Scripts
+    {
+    <script src="~/Template/fashi/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Template/fashi/js/toastr.min.js"></script>
+    <script src="~/Template/fashi/js/jquery.blockUI.js"></script>
+
+    <script src="~/CustomScripts/Announcemet/AddAnnouncementScript.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script>
+        $(".real").maskMoney({
+            prefix: '',
+            thousands: '.',
+            decimal: ','
+        })
+        function googleAdwords() {
+            let ga_vd = $('#ga_vd').maskMoney('unmasked')[0]
+            let ga_pvm = parseFloat($('#ga_pvm').val())
+            if (!isNaN(ga_vd) && !isNaN(ga_pvm)) {
+                $('#ga_eam').val((ga_vd * ga_pvm).toLocaleString('pt-BR', format))
+            }
+        }
+        $(document).on('keyup', '#ga_vd', googleAdwords)
+        $(document).on('keyup', '#ga_pvm', googleAdwords)
+
+
+    </script>
+    <script>
+        $("#city").on("change", function () {
+            var cityId = $(this).val();
+            console.log(cityId);
+            debugger;
+            $.ajax({
+                method: "GET",
+                url: "/Announcement/SelectCounty",
+                data: { Id: cityId },
+                beforeSend: function () {
+                }
+            }).done(function (d) {
+                $("#county").html(d);
+            }).always(function () {
+            });
+        });
+
+        $("#county").on("change", function () {
+            debugger;
+            var countyId = $(this).val();
+            console.log(countyId);
+        });
+    </script>
+}

@@ -1,0 +1,109 @@
+﻿@model RealEstateWebSiteProjects.Contract.CustomModels.User.UserProfileModel
+@{
+    ViewData["Title"] = "UserProfileById";
+}
+
+<link href="~/Template/fashi/css/toastr.min.css" rel="stylesheet" />
+@if (Model != null)
+{
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                        <h2>Hesabım</h2>
+                        <form asp-action="UpdateUserProfile" asp-controller="User" method="post" asp-formhelper="true" asp-enableButtonAfterSuccess="true">
+                            <input type="hidden" name="Id" value="@Model.UserModel.Id" />
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="username">Adı Soyadı *</label>
+                                        <input type="text" name="FullName" id="fulName" value="@Model.UserModel.FullName">
+                                        @*<span id="fullNameError" class="text-danger"></span>*@
+                                        <span id="FullName" class="text-danger" data-valmsg-for="FullName" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="pass">Kullanıcı Adı *</label>
+                                        <input type="text" name="RegisterName" id="regName" value="@Model.UserModel.RegisterName">
+                                        @*<span id="regNameError" class="text-danger"></span>*@
+                                        <span id="RegisterName" class="text-danger" data-valmsg-for="RegisterName" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="pass">Telefon Numarası *</label>
+                                        @if (Model.TelephoneNumber != null)
+                                        {
+                                            <input type="text" name="TelephoneNumber" value="@Model.TelephoneNumber">
+                                        }
+                                        else
+                                        {
+                                            <input type="text" name="TelephoneNumber" value="">
+
+                                        }
+                                        <span id="TelephoneNumber" class="text-danger" data-valmsg-for="TelephoneNumber" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="pass">E-Posta *</label>
+                                        @if (Model.Email != null)
+                                        {
+                                            <input type="text" name="Email" value="@Model.Email">
+                                        }
+                                        else
+                                        {
+                                            <input type="text" name="Email" value="">
+
+                                        }
+                                        <span id="Email" class="text-danger" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-input">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="pass">Adres *</label>
+                                        @if (Model.Address != null)
+                                        {
+                                            <textarea name="Address" class="form-control" rows="4">@Model.Address</textarea>
+                                        }
+                                        else
+                                        {
+                                            <textarea name="Address" class="form-control" rows="4"></textarea>
+
+                                        }
+                                        <span id="Address" class="text-danger" data-valmsg-for="Address" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="pass">Açıklama *</label>
+                                        @if (Model.Description != null)
+                                        {
+                                            <textarea name="Description" class="form-control" rows="4">@Model.Description</textarea>
+                                        }
+                                        else
+                                        {
+                                            <textarea name="Description" class="form-control" rows="4"></textarea>
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="site-btn login-btn">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h5>Kayıt Bulunamadı</h5>
+}
+@*<script src="~/Template/fashi/js/jquery-3.3.1.min.js"></script>*@
+<script src="~/Template/fashi/js/toastr.min.js"></script>
+<script src="~/Template/fashi/js/jquery.blockUI.js"></script>
+
+

@@ -1,0 +1,17 @@
+﻿@model List<RealEstateWebSiteProjects.Contract.CustomModels.County.CountyListModel>
+
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Description</option>
+    }
+}
+else
+{
+    <option>
+        @ViewBag.Message
+
+    </option>
+
+}

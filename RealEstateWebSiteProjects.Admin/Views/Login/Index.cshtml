@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Shared/_Layout.cshtml";
+}
+
+<div class="register-login-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="login-form">
+                    <h2>Giriş</h2>
+                    <form asp-action="Login" asp-controller="Login" method="post" asp-formhelper="true" asp-enableButtonAfterSuccess="true">
+                        <div class="group-input">
+                            <label for="username">Kullanıcı Adı *</label>
+                            <input type="text" name="RegisterName" id="username">
+                            @*<span class="text-danger" data-valmsg-for="RegisterName" data-valmsg-replace="true"></span>*@
+                        </div>
+                        <div class="group-input">
+                            <label for="pass">Şifre *</label>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <input type="password" name="Password" id="pass">
+                                    @*<span class="text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>*@
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="checkbox" style="transform: scale(0.5);" onclick="myFunction()">
+                                </div>
+                            </div>
+                        </div>
+                        @if (TempData["ErrorUser"] != null)
+                        {
+                            <div>
+                                <p style="color:red;">@TempData["ErrorUser"]</p>
+                            </div>
+                        }
+                        <div class="group-input gi-check">
+                            <div class="gi-more">
+                                @*<a href="#" class="forget-pass">Şifremi Unuttum</a>*@
+                            </div>
+                        </div>
+                        <button type="submit" class="site-btn login-btn">Giriş Yap</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script src="~/Template/fashi/js/jquery-3.3.1.min.js"></script>*@
+<script>
+    function myFunction() {
+        var x = document.getElementById("pass");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    };
+</script>

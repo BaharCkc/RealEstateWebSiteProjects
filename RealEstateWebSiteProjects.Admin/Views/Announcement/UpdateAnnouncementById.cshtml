@@ -1,0 +1,236 @@
+﻿@model RealEstateWebSiteProjects.Contract.CustomModels.Announcement.AnnouncementListModel
+@{
+    ViewData["Title"] = "UpdateAnnouncementById";
+}
+
+<link href="~/Template/fashi/css/toastr.min.css" rel="stylesheet" />
+<br />
+<br />
+<div style="text-align:center">
+    <h2>İlan Güncelle</h2>
+</div>
+
+    <div class="register-form">
+        <form id="UpdateAnnouncementForm" enctype="multipart/form-data">
+            <div class="register-login-section spad">
+                <div class="container">
+                    @if (Model != null)
+                    {
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div>
+                                    <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+                                    <div class="group-input">
+                                        <label for="username">İlan Adı *</label>
+                                        <input name="Header" required type="text" id="Header" value="@Model.Header">
+                                    </div>
+                                    <div class="group-input">
+                                        <label for="pass">Fiyat *</label>
+                                        <input name="Price" required type="text" id="Price" value="@Model.Price">
+                                    </div>
+                                    <div class="group-input">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="con-pass">Brüt Metrekare *</label>
+                                                <input name="GrossSquareMeter" required type="text" id="GrossSquareMeter" value="@Model.GrossSquareMeter">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="con-pass">Net Metrekare *</label>
+                                                <input name="NetSquareMeter" required type="text" id="NetSquareMeter" value="@Model.NetSquareMeter">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="group-input">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="con-pass">Bulunduğu Kat *</label>
+                                                <input name="FloorLocation" required type="text" id="FloorLocation" value="@Model.FloorLocation">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="con-pass">Konut Yaşı *</label>
+                                                <input name="HousingAge" type="number" id="HousingAge" value="@Model.HousingAge">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="group-input">
+                                        <label for="con-pass">Adres *</label>
+                                        <textarea name="Address" id="Address" required class="form-control" rows="4">@Model.Address</textarea>
+                                        @*<input type="text" id="con-pass">*@
+                                    </div>
+                                    <div class="group-input">
+                                        <label for="con-pass">İlan Resimleri *</label>
+                                        <input name="UploadFile" required multiple="multiple" class="form-control" type="file">
+                                        @*<input type="text" id="con-pass">*@
+                                    </div>
+                                    <div class="group-input">
+                                        <div class="product-thumbs">
+                                            <div class="product-thumbs-track ps-slider owl-carousel">
+                                                @if (Model.FileDocumentList != null && Model.FileDocumentList.Count > 0)
+                                                {
+                                                    foreach (var item in Model.FileDocumentList)
+                                                    {
+                                                        <div>
+
+                                                            @*<a href="/Customer/DownloadFile?filePath=@item.FilePath" target="_blank" title="İndir">*@
+                                                            <a href="/Announcement/DownloadFile?filePath=@item.FilePath" target="_blank"><img src="@item.FilePath" alt=""></a>
+                                                        </div>
+
+                                                    }
+                                                }
+                                            </div>
+                                            <label><i style="color:red; font-size:11px;">* Resimleri, üzerine tıklayarak indirebilirsiniz.</i></label>
+                                        </div>
+                                    </div>
+                                    @*<button type="submit" class="site-btn register-btn">REGISTER</button>*@
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                    <div class="group-input">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label for="con-pass">Oda Sayısı *</label>
+                                                <input name="NumberOfRooms" required type="text" id="NumberOfRooms" value="@Model.NumberOfRooms">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="con-pass">Banyo Sayısı *</label>
+                                                <input name="NumberOfBathrooms" type="text" id="NumberOfBathrooms" value="@Model.NumberOfBathrooms">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>* Eşyalı mı?  :</label>
+                                                <select class="form-control" required name="IsArticle" id="IsArticle">
+                                                    <option value=""></option>
+                                                    @if (Model.IsArticle == true)
+                                                    {
+                                                        <option value="true" selected="selected">Evet</option>
+                                                        <option value="false">Hayır</option>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="false" selected="selected">Hayır</option>
+                                                        <option value="true">Evet</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="group-input">
+                                        <label>* Şehir  :</label>
+                                        <select class="form-control" required name="CityId" id="CityId">
+                                            <option value=""></option>
+                                            @if (Model.CityList != null)
+                                            {
+                                                @foreach (var item in Model.CityList)
+                                                {
+                                                    if (item.Id == Model.CityId)
+                                                    {
+                                                        <option value="@item.Id" selected="selected">@item.Description</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="group-input">
+                                        <label>* İlçe  :</label>
+                                        <select class="form-control" required name="CountyId" id="CountyId">
+                                            <option value=""></option>
+                                            @if (Model.CountyList != null)
+                                            {
+                                                @foreach (var item in Model.CountyList)
+                                                {
+                                                    if (item.Id == Model.CountyId)
+                                                    {
+                                                        <option value="@item.Id" selected="selected">@item.Description</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="group-input">
+                                        <label>* İlan Kategori  :</label>
+                                        <select class="form-control" required name="AnnouncementCategoryId" id="AnnouncementCategoryId">
+                                            <option value=""></option>
+                                            @if (Model.AnnouncementCategoryList != null)
+                                            {
+                                                @foreach (var item in Model.AnnouncementCategoryList)
+                                                {
+                                                    if (item.Id == Model.AnnouncementCategoryId)
+                                                    {
+                                                        <option value="@item.Id" selected="selected">@item.Description</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="group-input">
+                                        <label>* İlan Tipi  :</label>
+                                        <select class="form-control" required name="AnnouncementTypeId" id="AnnouncementTypeId">
+                                            <option value=""></option>
+                                            @if (Model.AnnouncementTypeList != null)
+                                            {
+                                                @foreach (var item in Model.AnnouncementTypeList)
+                                                {
+                                                    if (item.Id == Model.AnnouncementTypeId)
+                                                    {
+                                                        <option value="@item.Id" selected="selected">@item.Description</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.Id">@item.Description</option>
+                                                    }
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="group-input">
+                                        <label for="con-pass">Açıklama *</label>
+                                        <textarea name="Description" id="Description" class="form-control" rows="6">@Model.Description</textarea>
+                                        @*<input type="text" id="con-pass">*@
+                                    </div>
+
+
+                                    <button type="submit" style="float:right" class="site-btn register-btn">Güncelle</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h5>Kayıt Bulunamadı</h5>
+                    }
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+
+@section Scripts
+    {
+    <script src="~/Template/fashi/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Template/fashi/js/toastr.min.js"></script>
+    <script src="~/Template/fashi/js/jquery.blockUI.js"></script>
+
+    <script src="~/CustomScripts/Announcemet/UpdateAnnouncementScript.js"></script>
+
+}
+
+

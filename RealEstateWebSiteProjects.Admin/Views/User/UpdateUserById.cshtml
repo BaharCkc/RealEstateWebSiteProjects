@@ -1,0 +1,46 @@
+﻿@model RealEstateWebSiteProjects.Contract.CustomModels.User.UserModel
+@{
+    ViewData["Title"] = "UpdateUserById";
+}
+<link href="~/Template/fashi/css/toastr.min.css" rel="stylesheet" />
+@if (Model != null)
+{
+    <div class="register-login-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="login-form">
+                        <h2>Kullanıcı Ekle</h2>
+                        <form id="updateUserForm">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="Id" value="@Model.Id" />
+                            <div class="group-input">
+                                <label for="username">Adı Soyadı *</label>
+                                <input type="text" name="FullName" id="fulName" value="@Model.FullName">
+                                @*<span id="fullNameError" class="text-danger"></span>*@
+                                <span id="FullName" class="text-danger" data-valmsg-for="FullName" data-valmsg-replace="true"></span>
+                            </div>
+                            <div class="group-input">
+                                <label for="pass">Kullanıcı Adı *</label>
+                                <input type="text" name="RegisterName" id="regName" value="@Model.RegisterName">
+                                @*<span id="regNameError" class="text-danger"></span>*@
+                                <span id="RegisterName" class="text-danger" data-valmsg-for="RegisterName" data-valmsg-replace="true"></span>
+                            </div>
+                            <button type="submit" class="site-btn login-btn">Güncelle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <h5>Kayıt Bulunamadı</h5>
+}
+<script src="~/Template/fashi/js/jquery-3.3.1.min.js"></script>
+<script src="~/Template/fashi/js/toastr.min.js"></script>
+<script src="~/Template/fashi/js/jquery.blockUI.js"></script>
+
+<script src="~/CustomScripts/User/UpdateUserScript.js"></script>
+

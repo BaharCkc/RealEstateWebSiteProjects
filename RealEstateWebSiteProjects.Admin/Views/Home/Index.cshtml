@@ -1,0 +1,135 @@
+﻿@model RealEstateWebSiteProjects.Contract.CustomModels.Announcement.GetTypeAnnouncementModel
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+<br />
+<section class="women-banner spad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="product-large set-bg" data-setbg="../../Template/fashi/img/emlak-vergisi-2.jpg">
+                    <h2>Kiralık</h2>
+                    @*<img src="~/Template/fashi/img/kiralik-konut.jpg" />*@
+                    <a href="/Announcement/AnnouncementList">Keşfet</a>
+                </div>
+            </div>
+            <div class="col-lg-8 offset-lg-1">
+                <div class="filter-control">
+                    <ul>
+                        <li class="active">Kiralık</li>
+                        @*<li>Kolyeler</li>
+                            <li>Bileklikler</li>
+                            <li>Halhal</li>
+                            <li>Saç Aksesuarları</li>*@
+                    </ul>
+                </div>
+                <div class="product-slider owl-carousel">
+                    @foreach (var item in Model.AnnouncementList)
+                    {
+                        if (item.AnnouncementTypeId == Guid.Parse("B4227161-7726-400A-E9E9-08D913390291"))
+                        {
+                            <div class="product-item">
+                                <div class="pi-pic">
+                                    @foreach (var file in Model.DocumentFileList)
+                                    {
+                                        if (item.Id == file.AnnouncementId)
+                                        {
+                                            <img src=@file.FilePath alt="">
+
+                                        }
+                                    }
+                                    <div class="sale">Sale</div>
+                                    <div class="icon">
+                                        <i class="icon_heart_alt"></i>
+                                    </div>
+                                    <ul>
+                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                        <li class="quick-view"><a href="/Announcement/DetailsAnnouncementById?Id=@item.Id">+ Detay</a></li>
+                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="pi-text">
+                                    <div class="catagory-name">@item.Number - @item.AnnouncementType.Description</div>
+                                    <a href="#">
+                                        <h5>@item.Header</h5>
+                                    </a>
+                                    <div class="product-price">
+                                        @item.Price
+                                        @*<span>$35.00</span>*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Women Banner Section End -->
+<!-- Deal Of The Week Section Begin-->
+<!-- Deal Of The Week Section End -->
+<!-- Man Banner Section Begin -->
+<section class="man-banner spad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="filter-control">
+                    <ul>
+                        <li class="active">Satılık</li>
+                        @*<li>Kolyeler</li>
+                            <li>Küpeler</li>*@
+                    </ul>
+                </div>
+                <div class="product-slider owl-carousel">
+                    @foreach (var item in Model.AnnouncementList)
+                    {
+                        if (item.AnnouncementTypeId == Guid.Parse("8A08336B-4B0C-4550-E9E8-08D913390291"))
+                        {
+                            <div class="product-item">
+                                <div class="pi-pic">
+                                    @foreach (var file in Model.DocumentFileList)
+                                    {
+                                        if (item.Id == file.AnnouncementId)
+                                        {
+                                            <img src=@file.FilePath alt="">
+
+                                        }
+                                    }
+                                    <div class="sale">Sale</div>
+                                    <div class="icon">
+                                        <i class="icon_heart_alt"></i>
+                                    </div>
+                                    <ul>
+                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                        <li class="quick-view"><a href="/Announcement/DetailsAnnouncementById?Id=@item.Id">+ Detay</a></li>
+                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="pi-text">
+                                    <div class="catagory-name">@item.Number - @item.AnnouncementType.Description</div>
+                                    <a href="#">
+                                        <h5>@item.Header</h5>
+                                    </a>
+                                    <div class="product-price">
+                                        @item.Price
+                                        @*<span>$35.00</span>*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+                <div class="product-large set-bg m-large" data-setbg="../../Template/fashi/img/emlak-vergisi-2.jpg">
+                    <h2>Satılık</h2>
+                    <a href="/Announcement/AnnouncementList">Keşfet</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
